@@ -11,6 +11,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.loadingGIFContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 90%;
+}
+
 .projectTitle {
   text-align: center;
   margin: 20px 0;
