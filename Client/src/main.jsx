@@ -47,12 +47,15 @@ async function handleSubmit(event) {
   console.log(formValues);
 
   //  local host address needs to be changed when deploying project.
-  const response = await fetch("https://around-the-world-in-a-click-server.onrender.com/newEntry", {
-    // WAIT for new entry to be saved to database.
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formValues),
-  });
+  const response = await fetch(
+    "https://around-the-world-in-a-click-server.onrender.com/newEntry",
+    {
+      // WAIT for new entry to be saved to database.
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValues),
+    }
+  );
   if (response.ok) {
     const successMessage = document.getElementById("customSuccessMessage");
     successMessage.style.display = "block";
@@ -70,6 +73,9 @@ async function handleSubmit(event) {
 }
 
 async function getGuestbookEntries() {
+  const loadingGIF = document.getElementById("loadingGIF");
+  loadingGIF.style.display = "block";
+  // Display loading GIF at the begining of function.
   const storedGuestbookEntries = await fetch(
     "https://around-the-world-in-a-click-server.onrender.com/guestBookEntries"
   );
@@ -109,6 +115,8 @@ async function getGuestbookEntries() {
     // append the created image element to the item div.
     allGuestbookEntriesContainer.appendChild(itemDiv);
     // appends the created div element onto the parent element.
+    loadingGIF.style.display="none";
+    //Remove loading GIF after entires have been loaded at the end of function.
   });
 }
 getGuestbookEntries();
